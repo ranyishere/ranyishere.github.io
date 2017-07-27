@@ -1,10 +1,14 @@
 ---
 layout: home
 ---
-# About Theme
+# About Me
 
-This theme is Jekyll port of [vangeltzo.com](http://vangeltzo.com/) (by [Vangelis Tzortzis](https://github.com/srekoble)).
+Welcome to my personal website!
 
-To learn how to install and use this theme check out the [installation guide](http://taylantatli.me/Halve/halve-theme/) for more information.
+I'm an energy researcher involved with li-ion batteries and applications of
+artificial intelligence/machine learning in energy management.
 
-If you have a question, find a bug, or just want to say hi, please open an [issue on GitHub](https://github.com/TaylanTatli/Halve/issues/new).
+You can find my publications and projects in the tab above.
+
+If you have a question, interesting thoughts, or just want to say hi, drop
+me an email.

@@ -1,29 +1,19 @@
-- title: Halve Jekyll Theme
-  url: http://taylantatli.me/Halve
+- title: Material Research Society
+  url: https://www.cambridge.org/core/journals/mrs-advances/article/div-classtitlesynthesis-of-lifepospan-classsub4span-using-an-ionic-liquidwater-composite-mediumdiv/33BE2C57E5F130BAA15C1DFDA3DE8048
   image: http://taylantatli.me/Halve/images/halve-home-image.png
-  completed: false
+  completed: true
 
-- title: Moon Jekyll Theme
-  url: http://taylantatli.me/Moon
+- title: Society of Photonics and Optics
+  url: http://proceedings.spiedigitallibrary.org/proceeding.aspx?articleid=2629038
   image: https://cloud.githubusercontent.com/assets/754514/14509720/61c61058-01d6-11e6-93ab-0918515ecd56.png
   completed: true
 
-- title: Ramme Jekyll Theme
+- title: VNenergy
   url: http://taylantatli.me/Ramme
   image: https://raw.githubusercontent.com/TaylanTatli/Ramme/master/assets/img/screenshot-post.png
   completed: true
 
-- title: Daisy Pelican Theme
-  url: http://taylantatli.me/Daisy-Pelican-Theme/
-  image: https://raw.githubusercontent.com/TaylanTatli/Daisy-Pelican-Theme/master/Preview-1.png
-  completed: true
-
-- title: Block Icon Theme
-  url: https://github.com/TaylanTatli/Block-Icon-Theme
-  image: https://raw.githubusercontent.com/TaylanTatli/Block-Icon-Theme/master/Preview.png
-  completed: false
-
-- title: Start Page
-  url: http://taylantatli.me/StartPage/
-  image: https://raw.githubusercontent.com/TaylanTatli/StartPage/master/preview.png
+- title: Nishimiya
+  url: http://taylantatli.me/Ramme
+  image: https://raw.githubusercontent.com/TaylanTatli/Ramme/master/assets/img/screenshot-post.png
   completed: false
