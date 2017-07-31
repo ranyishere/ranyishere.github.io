@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator><link href="https://ranyishere.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://ranyishere.github.io//" rel="alternate" type="text/html" /><updated>2017-07-29T12:56:52-07:00</updated><id>https://ranyishere.github.io//</id><title>Rany Tith</title><subtitle>Energy, Material Science, AI</subtitle><entry><title>Graphical Models, Exponential Families, and Variational Inferences</title><link href="https://ranyishere.github.io//probabilistic-graphical-models/" rel="alternate" type="text/html" title="Graphical Models, Exponential Families, and Variational Inferences" /><published>2017-07-28T00:00:00-07:00</published><updated>2017-07-28T00:00:00-07:00</updated><id>https://ranyishere.github.io//probabilistic-graphical-models</id><content type="html" xml:base="https://ranyishere.github.io//probabilistic-graphical-models/">&lt;p&gt;[ \frac{3}/{2} ]
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator><link href="https://ranyishere.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://ranyishere.github.io//" rel="alternate" type="text/html" /><updated>2017-07-30T11:27:29-07:00</updated><id>https://ranyishere.github.io//</id><title>Rany Tith</title><subtitle>Energy, Material Science, AI</subtitle><entry><title>Graphical Models and Bayesian Networks</title><link href="https://ranyishere.github.io//graphical-models-bayesian-network/" rel="alternate" type="text/html" title="Graphical Models and Bayesian Networks" /><published>2017-07-29T00:00:00-07:00</published><updated>2017-07-29T00:00:00-07:00</updated><id>https://ranyishere.github.io//graphical-models-bayesian-network</id><content type="html" xml:base="https://ranyishere.github.io//graphical-models-bayesian-network/">&lt;p&gt;[ \frac{3}/{2} ]
+# Generative Adversarial Networks&lt;/p&gt;
+
+&lt;p&gt;Thttp://www.cs.ubc.ca/~murphyk/Bayes/bnintro.html#decision&lt;/p&gt;
+
+&lt;h2 id=&quot;multiple-correct-answers&quot;&gt;Multiple correct answers&lt;/h2&gt;
+&lt;p&gt;What Ian meant by having multiple correct answers is that your lists of possible
+outcomes allowed from your model is more than one. For example, if you are trying
+to predict cats, dogs, and human. We might not be able to distinguish that a given input is either one, but we are able to say that it is possible that the input is
+one of the things in the list. Therefore, the input is accepted.&lt;/p&gt;
+
+&lt;h2 id=&quot;learn-useful-embeddings&quot;&gt;Learn useful embeddings&lt;/h2&gt;
+&lt;p&gt;There are tools like word2vec that are able to turn words into a vector in an embedded space. You are able to do the same thing with GANs but with pictures. For example, given a picture of a man with glasses, subtract a picture of a man, and a picture of a woman with glasses is returned.&lt;/p&gt;
+
+&lt;h3 id=&quot;link-to-video&quot;&gt;Link to video:&lt;/h3&gt;
+
+&lt;p&gt;http://on-demand.gputechconf.com/gtc/2017/video/s7502-ian-goodfellow-generative-adversarial-networks.mp4&lt;/p&gt;</content><category term="probability/statistics" /><category term="models" /><category term="website" /><summary>A Brief Overview</summary></entry><entry><title>Bisection Method for Single Variable</title><link href="https://ranyishere.github.io//bisection/" rel="alternate" type="text/html" title="Bisection Method for Single Variable" /><published>2017-07-29T00:00:00-07:00</published><updated>2017-07-29T00:00:00-07:00</updated><id>https://ranyishere.github.io//bisection</id><content type="html" xml:base="https://ranyishere.github.io//bisection/">&lt;h1 id=&quot;bisection-method&quot;&gt;Bisection Method&lt;/h1&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  INPUT endpoints a,b; tolerance TOL;maximum number of iterations
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><category term="numerical analysis" /><category term="book" /><category term="numerical_tech" /><summary>Numerical Analysis by Richard L. Burden and J. Douglas Faires</summary></entry><entry><title>Graphical Models, Exponential Families, and Variational Inferences</title><link href="https://ranyishere.github.io//probabilistic-graphical-models/" rel="alternate" type="text/html" title="Graphical Models, Exponential Families, and Variational Inferences" /><published>2017-07-28T00:00:00-07:00</published><updated>2017-07-28T00:00:00-07:00</updated><id>https://ranyishere.github.io//probabilistic-graphical-models</id><content type="html" xml:base="https://ranyishere.github.io//probabilistic-graphical-models/">&lt;p&gt;[ \frac{3}/{2} ]
 # Generative Adversarial Networks&lt;/p&gt;
 
 &lt;p&gt;This is a real interesting talk by Ian Goodfellow. He gives an overview applications of

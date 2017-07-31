@@ -2,7 +2,7 @@
 title: Rany Tith
 description: Energy, Material Science, AI
 url: https://ranyishere.github.io
-logo: halve.png                                       # Site logo
+logo: profile.jpg                                       # Site logo
 locale: en_US
 
 # Left Block Images
@@ -34,8 +34,8 @@ email:             rany.tith@protonmail.com
 #twitter:            username
 #facebook:           username
 github:             ranyishere
-stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
-#linkedin:          username
+#stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
+linkedin:          ranytith
 #xing:              username
 #instagram:          username
 #lastfm:            username
