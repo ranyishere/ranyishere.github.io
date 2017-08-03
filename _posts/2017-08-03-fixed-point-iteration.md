@@ -3,11 +3,17 @@ layout: post
 title: "Fixed Point Iteration"
 excerpt: "Numerical Analysis by Richard L. Burden and J. Douglas Faires"
 tags:
-  - programming
-  - website
+  - numerical analysis
+  - book
+  - numerical_tech
 ---
 
 # Fixed Point Iteration Method
+
+You want to use this method to find a point where \\(f(p) = p \\).
+In other words, the point you put into the function returns the same point.
+To put it in another perspection, when the line \\(y = x \\) intersects your
+function \\(f(x)\\).
 
 ```
 INPUT initial approximation p_o;tolerance TOL; maximum number of iterations N
