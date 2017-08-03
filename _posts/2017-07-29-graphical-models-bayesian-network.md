@@ -8,7 +8,6 @@ tags:
   - website
 ---
 
-\[ \frac{3}/{2} \]
 # An Introduction by Kevin Murphy
 
 

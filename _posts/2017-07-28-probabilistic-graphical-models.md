@@ -9,7 +9,6 @@ tags:
   - /r/machinelearning
 ---
 
-\[ \frac{3}/{2} \]
 # Generative Adversarial Networks
 
 This is a real interesting talk by Ian Goodfellow. He gives an overview applications of

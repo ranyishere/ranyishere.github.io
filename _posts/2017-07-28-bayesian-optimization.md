@@ -9,7 +9,6 @@ tags:
   - statistics/probability
 ---
 
-\[ \frac{3}{2} \]
 
 # Practical Bayesian Optimization of Machine Learning Algorithms
 ## Jasper Snoek, Hugo Larochelle, and Ryan P. Adams; Harvard University
