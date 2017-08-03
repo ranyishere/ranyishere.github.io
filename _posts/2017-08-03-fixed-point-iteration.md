@@ -12,7 +12,7 @@ tags:
 
 You want to use this method to find a point where \\(f(p) = p \\).
 In other words, the point you put into the function returns the same point.
-To put it in another perspection, when the line \\(y = x \\) intersects your
+To put it in another perspective, when the line \\(y = x \\) intersects your
 function \\(f(x)\\).
 
 ```
