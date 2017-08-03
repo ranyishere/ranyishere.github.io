@@ -10,6 +10,11 @@ tags:
 
 # Bisection Method
 
+This is a method to find the roots of a single variable function. \\(f(a)\\)
+and \\(f(b)\\) have opposite signs and you are basically finding the midpoint
+between a and b. And you do this iteratively until \\(f(p)\\) equals to zero
+or you reach the iteration limit you set.
+
 ```
   INPUT endpoints a,b; tolerance TOL;maximum number of iterations
 
