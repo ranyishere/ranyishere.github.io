@@ -8,11 +8,11 @@ tags:
 
 ---
 
-# Control Theory
+## Control Theory
 
 Focuses on equations to understand the world.
 
-# Artificial Intelligence
+## Artificial Intelligence
 
 A black box attempt in solving problems.
 
