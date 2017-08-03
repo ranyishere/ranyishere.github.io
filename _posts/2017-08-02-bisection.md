@@ -25,7 +25,8 @@ tags:
       OUTPUT (\\(p\\)) (Procedure is completed, output the point p)
       STOP
     Step 5 Set \\(i = i + 1\\).
-    Step 6 If \\(FA\ \dot\ FP\\) > 0 then \\(a = p\\); (Computer \\(a\_{i}\\), \\(b\_{i}\\))
+    Step 6 If \\(FA\ \dot\ FP\\) > 0 then \\(a = p\\); (Compute \\(a\_{i}\\),
+                                                      \\(b\_{i}\\))
       \\(FA = FP\\)
     else set \\(b = p\\). (\\(FA\\) is unchanged.)
   Step 7 OUTPUT ('Method failed after \\(N\_{o}\\) iterations')
