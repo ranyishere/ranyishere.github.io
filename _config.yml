@@ -26,12 +26,13 @@ sass:
   style:            compressed
 
 # Google Analytics
-#google-analytics: UA-XXXXX-Y
+google-analytics: UA-75823519-2
+
 
 # Social Links
 email:             rany.tith@protonmail.com
 #google.plus:        username
-#twitter:            username
+twitter:            RanyTith
 #facebook:           username
 github:             ranyishere
 #stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
