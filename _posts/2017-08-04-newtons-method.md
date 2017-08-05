@@ -10,7 +10,7 @@ tags:
 
 # Newton's Method
 
-This method is used to find a point p where \\(f(p) = 0\\). In other words, where the
+This method is used to find a point \\(p\\) where \\(f(p) = 0\\). In other words, where the
 rate at which your function \\(f(x)\\) changes is zero. Or you can think of it as where the
 function touches the x axis.
 
@@ -27,7 +27,7 @@ Step 2 While I =< N_o do Steps 3-6
     OUTPUT (p); (The procedure was successful.)
     STOP.
   Step 5 Set i = i + 1.
-  Step 6 Setp p_o = p. (Update p_o)
+  Step 6 Set p_o = p. (Update p_o)
 
 Step 7 OUTPUT('The method failed after N_o iterations')
   (The procedure was unsuccessful)
