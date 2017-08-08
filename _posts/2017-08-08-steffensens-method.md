@@ -9,7 +9,7 @@ tags:
   - convergence
 ---
 
-# Stffensen's Method
+# Steffensen's Method
 
 Used to find a solution \\(p = g(p)\\) given an initial approximation \\(p_o\\).
 
