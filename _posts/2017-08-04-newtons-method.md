@@ -21,7 +21,7 @@ OUTPUT approximate solution p or message of failure.
 
 Step 1 Set i = 1.
 
-Step 2 While I =< N_o do Steps 3-6
+Step 2 While i =< N_o do Steps 3-6
   Step 3 Set p = p_o - f(p_o)/f'(p_o). (compute p_i.)
   Step 4 If |p - p_o| < TOL then
     OUTPUT (p); (The procedure was successful.)

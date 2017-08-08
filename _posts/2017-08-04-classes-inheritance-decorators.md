@@ -37,3 +37,5 @@ https://en.wikipedia.org/wiki/Parallel_computing
 https://en.wikipedia.org/wiki/Lattice_Boltzmann_methods
 
 https://www.youtube.com/watch?v=7lmCu8wz8ro --> expert python
+
+https://stackoverflow.com/questions/23944657/typeerror-method-takes-1-positional-argument-but-2-were-given --> syntactic sugar
