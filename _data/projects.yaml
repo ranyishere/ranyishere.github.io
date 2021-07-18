@@ -8,12 +8,7 @@
   image: http://ranytith.com/images/spie_img.PNG
   completed: true
 
-- title: VNenergy
+- title: VNenergy (Defunc)
   url: http://taylantatli.me/Ramme
-  image: https://raw.githubusercontent.com/TaylanTatli/Ramme/master/assets/img/screenshot-post.png
-  completed: false
-
-- title: Nishimiya
-  url: http://taylantatli.me/Ramme
-  image: https://raw.githubusercontent.com/TaylanTatli/Ramme/master/assets/img/screenshot-post.png
+  image: http://ranytith.com/images/vnenergy.PNG
   completed: false
