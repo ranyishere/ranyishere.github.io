@@ -333,30 +333,6 @@
         </div>
     </section>
 
-    <section class="section">
-        <div class="container is-fluid">
-            <div class="box">
-                <h1 class="title"> The Final Piece</h1>
-                <pre>
-                <code class="language-c++">
-                /**
-                 * Solves max flow problem
-                 */
-                int solve() {
-
-                    int max_flow = 0;
-
-                    while(bfs()) {
-                        max_flow = max_flow + dfs(s, 100);
-                    }
-
-                    return max_flow;
-                }
-                </code>
-                </pre>
-            </div>
-        </div>
-    </section>
 
     <!-- Blocking Path -->
     <section class="section">
@@ -430,6 +406,33 @@
             </div>
         </div>
     </section>
+
+    <!-- Last Final Part of Dinitz -->
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                <h1 class="title"> The Final Piece</h1>
+                <pre>
+                <code class="language-c++">
+                /**
+                 * Solves max flow problem
+                 */
+                int solve() {
+
+                    int max_flow = 0;
+
+                    while(bfs()) {
+                        max_flow = max_flow + dfs(s, 100);
+                    }
+
+                    return max_flow;
+                }
+                </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Run Time -->
     <section class="section">
