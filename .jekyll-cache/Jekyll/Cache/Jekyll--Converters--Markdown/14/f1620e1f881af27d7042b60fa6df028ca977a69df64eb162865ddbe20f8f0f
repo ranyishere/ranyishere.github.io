@@ -1,0 +1,47 @@
+I"b<h1 id="secant-method">Secant Method</h1>
+
+<p>Newton’s method can be computationally heavy if we cannot easily find what
+\(f’(x)\) is. A remedy to this is the secant method. Where we use the definition
+of the derivative to make an approximation for \(f’(x)\).</p>
+
+<p>In other words, this is an alternative way to find \(f(x) = 0\) if you are given initial approximations of \(p_{o}\) and \(p_{1}\).</p>
+
+<p>\[f’(p_{n-1}) = \lim_{x \to p_{n-1}}
+\dfrac{f(x) - f(p_{n-1})}{x - p_{n-1}}\]</p>
+
+<p>If \(p_{n-2}\) is close to \(p_{n-1}\) then:</p>
+
+<p>\[  f’(p_{n-1}) \approx \dfrac{f(p_{n-2})-f(p_{n-1})}{p_{n-2} - p_{n-1}} \]</p>
+
+<p>\[= \dfrac{f(p_{n-1}) - f(p_{n-2})}{p_{n-1} - p_{n-2}} \]</p>
+
+<p>Using the approximation for \(f’(p_{n-1})\) in Newton’s Formula gives:</p>
+
+<p>\[ p_{n} = p_{n-1} - \dfrac{f(p_{n-1})(p_{n-1} - p_{n-2})}{f(p_{n-1} - f(p_{n-2})} \]</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INPUT initial approximation p_o;tolerance TOL;maximum number of iterations N_o
+
+OUTPUT approximate solution p or message of failure.
+
+Step 1 Set i = 2;
+  q_0 = f(p_0);
+  q_1 = f(p_q)
+
+Step 2 While i =&lt; N_o do steps 3-6
+  Step 3 Set p = p_1 - q_1(p_q - p_o)/(q_1-q_o). (compute p_i)
+  Step 4 Set if |p - p_1 | &lt; TOL
+    OUTPUT (p); (The procecure was successful.)
+    STOP.
+
+  Step 5 Set i = i + 1;
+    q = f(p)
+
+  Step 6 If q times q_1 &lt; 0 then set p_o = p_1:
+                                     q_o = q_1
+  Step 7 Set p_1 = p;
+         q_1 = q
+
+  Step 8 OUTPUT ('Method failed after N_o iterations')
+         STOP
+</code></pre></div></div>
+:ET

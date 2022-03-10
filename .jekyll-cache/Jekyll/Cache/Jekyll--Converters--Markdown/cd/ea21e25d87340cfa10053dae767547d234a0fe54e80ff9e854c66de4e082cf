@@ -1,0 +1,25 @@
+I""<h1 id="steffensens-method">Steffensen’s Method</h1>
+
+<p>Used to find a solution \(p = g(p)\) given an initial approximation \(p_o\).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INPUT initial approximation p_o;tolerance TOL;maximum number of iterations N_o
+
+OUTPUT approximate solution p or message of failure.
+
+Step 1 Set i = 1.
+
+Step 2 While i =&lt; N_o do steps 3-6.
+  Step 3 Set p_1 = g(p_o);
+         p_2 = g(p_1);
+         p = p_o - (p_1 - p_o)^{2}/(p_2 - 2p_1 + p_o).
+  Step 4 If |p - p_o| &lt; TOL then
+         OUTPUT (p); (procedure completed successfully.)
+         STOP.
+  Step 5 Set i = i + 1.
+  Step 6  Set p_o = p (Update p_o)
+
+Step 7 OUTPUT ('Method failed after N_o iterations');
+       STOP.
+
+</code></pre></div></div>
+:ET

@@ -1,0 +1,10 @@
+I"´<h1 id="thread-safety-in-multithreading">Thread Safety in multithreading</h1>
+
+<p>Thread safety refers to when a piece of code gets called simultaneously by multiple threads and it functions correctly.</p>
+
+<h3 id="information">Information:</h3>
+
+<p>https://blogs.msdn.microsoft.com/ericlippert/2009/10/19/what-is-this-thing-you-call-thread-safe/</p>
+
+<p>https://stackoverflow.com/questions/261683/what-is-meant-by-thread-safe-code</p>
+:ET

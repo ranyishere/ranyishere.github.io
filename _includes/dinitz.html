@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+<hmtl>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+
+      <script src="https://d3js.org/d3.v4.min.js" type="text/javascript"></script>
+      <script src="https://d3js.org/d3-selection-multi.v1.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script type="module">
+        import { transition } from "https://cdn.skypack.dev/d3-transition@3";
+        const t = transition();
+        hljs.initHighlightingOnLoad();
+        // hljs.highlightAll();
+      </script>
+
+        <style type="text/css">
+            .node {}
+            .link { stroke: black; stroke-opacity: .9; stroke-width: 2px; }
+
+            /*
+            pre code {
+              background-color: black;
+              display: block;
+              color: white;
+            }
+            */
+
+        </style>
+
+    </head>
+      <body>
+    <section class="hero is-primary is-fullheight">
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container">
+      <p class="title">
+        Dinitz's Algorithm
+      </p>
+      <p class="subtitle">
+        Solving maxflow problems intuitively
+      </p>
+      <p class="subtitle">
+        By: Rany Tith
+      </p>
+        <svg id="title-graph" width="960" height="600"></svg>
+    </div>
+  </div>
+
+  <!-- Motivation -->
+</section>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                  <h1 class="title">Why max flow?</h1>
+                    <h2 class="subtitle">
+                      It appears in  <b>many</b> different scenarios
+                  </h2>
+                  <p>
+                  </p>
+                  <div class="content">
+                    <ol>
+                      <li>Water irrigation</li>
+                      <li>Transferring money between accounts with transfer limits</li>
+                      <li>Traffic flow in a city</li>
+                      <li>Moving electricity from production power plants to cities</li>
+                    </ol>
+                  </div>
+                  <p>
+                  Graph algorithms are also just fun!
+                  </p>
+                  <!-- <svg id="electric-graph" width="960" height="600"></svg> -->
+            </div>
+        </div>
+    </section>
+
+
+  <!-- Electrical Grid Example -->
+  </section>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                  <h1 class="title">Example: Electric  Grid</h1>
+                    <h2 class="subtitle">
+                        Suppose I am given an electrical grid.
+                        I want to deliver electricity from solar panels to UCR via a series of transformers connected by power lines.
+                        What is the max flow of electricity from my source to a targe node in my network?
+                  </h2>
+                 <svg id="electric-graph" width="960" height="600"></svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Defining problem Statement -->
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                  <h1 class="title">Max Flow Problem</h1>
+                    <h2 class="subtitle">
+                      Formalizing the problem
+              </h2>
+              <p>
+              Let \(G = (V,E, c) \) be a capacited directed graph. Where we have \(c\) denote the capacity function \(c: E \rightarrow \mathbb{R}^{+}\) assigning a capacity to each edge.
+
+</p>
+
+    <div class="content">
+          A flow is defined as a function \(f: E \rightarrow \mathbb{R}^{+}\) with the following constraints:
+        <ol type="1">
+            <li>
+                 Capacity Constraint: \(\forall e \in E : 0 \leq f(e) \leq c(e)\)
+            </li>
+            <li>
+                Flow Constraint: \(\forall v \in V \backslash \{s,t\}: \sum_{(v,u) \in E} f(v,u) - \sum_{(u,v) \in E} f(u,v) = 0 \)
+            </li>
+        </ol>
+            In essence, capacity constraint tells us that the flow between nodes is zero or at full capacity. The flow constraint tells us that all incoming flows to a vertex is equal to the sum of the exiting flows of the vertex.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Possible flow -->
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                  <h1 class="title">Example: Electric  Grid - Continued</h1>
+                    <h2 class="subtitle">
+                        Possible Flows
+                  </h2>
+                 <svg id="electric-graph2" width="960" height="600"></svg>
+                 <p>
+                    The above solution tells us that there exists a flow of 19. Note that this constructed flow follows the capacity and flow constraint. This also so happens to be the max flow. And so how do we construct this flow and guarantee that it is the maximum?
+                 </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Layered Graph -->
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                  <h1 class="title">Residual graph & Capacity</h1>
+                    <h2 class="subtitle">
+                        Formalizing Dinitz
+                    </h2>
+                    <div class="content">
+
+                        <h2 class="subtitle">
+                            Residual Capacity
+                        </h2>
+                        A residual capacity is a function \(c_{f}: V \times V \rightarrow \mathbb{R}^{+}\) defined as:
+                        <p>
+                          \[
+                          c_{f}(u,v) = \begin{cases}
+                              c(u,v) - f(u,v) & \text{ if } (u,v) \in E \\
+                              0 & \text{otherwise}
+                            \end{cases}
+
+                          \]
+                        </p>
+
+                        <h2 class="subtitle">
+                            Residual Graph
+                        </h2>
+                        A residual graph \(G_{f} = ((V,E_{f}), c_{f}|_{E_{f}},s,t) \). Where \(E_{f} = \{(u,v) \in V \times V : c_{f}(u,v) > 0\} \). This keeps track of the amount of flow we are using in each phase.
+                 <p>
+                    <h2 class="subtitle">
+                        Augmenting Path
+                    </h2>
+                    An augmenting path is a path from the source to the target, \(s-t\), in the residual graph \(G_{f}\).
+                 </p>
+                 <p>
+                  <h2 class="subtitle">
+                    A Level graph
+                  </h2>
+                    Let \(dist(u)\) be the length of the shortest distance from source to vertex \(u\).
+                    \[
+                        G_{L} = ((V,E_{L}), c_{f}|_{E_{L}}, s, t)
+                    \]
+                    where we have:
+                    \[
+                    E_{L} = \{(u,v) \in E_{f} : dist(v) = dist(u) + 1\}
+                    \]
+                    This is used what is to keep track of the distance of vertices from the source.
+                 </p>
+
+                 <p>
+                 <h2 class="subtitle"> Blocking Flow</h2>
+                  <p>
+                  Let \(f'\) be the current flow of the graph.
+                  A <b>blocking</b> flow is that here is no path from source to sink in the follow graph:
+                  \[
+                  G' = ((V, E'_{L}), s, t)
+                  \]
+                  where
+                  \[
+                     E'=\{(u,v) : f'(u,v) < c_{f}|_{E_{L}} (u,v) \}
+                  \]
+                     Or in other words, its a graph where all the saturated edges are removed.
+                  </p>
+                 </p>
+
+                    </div>
+                    <!-- <svg id="electric-graph2" width="960" height="600"></svg> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Dinitz again more formalized-->
+    <section class="section">
+      <div class="container is-fluid">
+        <div class="box">
+          <h1 class="title"> Dinitz's Algorithm</h1>
+          <h2 class="subtitle"> A little more formal</h2>
+          <div class="content">
+            <p>
+            <p>
+            Input: \(G = ((V,E),c,s,t) \)
+            </p>
+            <p>
+            Output: A \(s-t\) path with a maximal flow
+            </p>
+
+            <ol type="1">
+              <li>Initialize \(G_{f}\)</li>
+              <li>Construct \(G_{L}\) from \(G_{f}\).</li>
+              <li>Find a blocking flow in \(G_{L}\) if \(dis(t) = \infty\) then return flow</li>
+              <li>Find a blocking flow in \(G_{L}\) </li>
+              <li> Add the flow to the paths in \(G_{f}\).
+            </ol>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Overview of implementation -->
+    <section class="section">
+      <div class="container is-fluid">
+        <div class="box">
+          <h1 class="title">
+            Dinitz (Dinics) Algorithm
+          </h1>
+          <h1 class="subtitle">Rough overview of implementation</h1>
+          <div class="content">
+            <ol>
+              <li>
+                Use breadth first search on the graph to mark vertices to be a certain distance from the source (removes blocking flows)
+              </li>
+              <li>
+                Use depth first search to update flows along the path with the smallest capacity.
+              </li>
+              <li>
+                Keep track of the flow you have added at each phase.
+              </li>
+            </ol>
+            Now we want to repeat the first and second step until there is no path that can be found from source to sink.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Augmented Path -->
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                  <h1 class="title">Constructing Level Graph</h1>
+                    <h2 class="subtitle">
+                        Using BFS to construct the level graph
+                  </h2>
+                  <p>
+                    Given \(G_{f}\) we want to be able to construct the level graph.
+                  </p>
+                  <div>
+                 <svg id="electric-graph3" width="960" height="600"></svg>
+                  </div>
+                  <p>
+                    The goal here is to given the current flow graph, give a level to each vertex if the flow on that edge is less
+                    than the capacity.
+                  </p>
+                 <p>
+                 </p>
+                 <div class="content">
+                 <h2 class="subtitle">BFS implementation in C++</h2>
+                 <pre>
+                 <code class="language-c++">
+                 bool bfs() {
+
+                    std::queue<int> next_verts;
+                    next_verts.push(s);
+
+                    // Keeping track of distance of each vertex
+                    level = std::vector<int>(col_size, 0);
+                    level[s] = 1;
+
+                    while(!next_verts.empty()) {
+
+                        int cur_vert = next_verts.front();
+                        next_verts.pop();
+                        for(unsigned int i=0; i < row_size; i++) {
+
+                            // Not visited and flow is less than capacity
+                            if (flow[cur_vert][i] < data[cur_vert][i] &&
+                                   (level[i] == 0)
+                               ) {
+
+                                // Grab the current level the vert is add and every node it is connected to is + 1
+                                level[i] = level[cur_vert] + 1;
+
+                                next_verts.push(i);
+                            }
+                        }
+                    }
+
+                  // sink is reachable from source
+                  return level[t] > 0;
+                }
+
+                 </code>
+                 </pre>
+               </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blocking Path -->
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                  <h1 class="title">Blocking Path</h1>
+                    <h2 class="subtitle">
+                        Find a blocking path using DFS
+                  </h2>
+                   <svg id="electric-graph4" width="960" height="600"></svg>
+                 <div class="content">
+                   <p>
+                    Notice that there are 3 blocking flows:
+                    <ol>
+                      <li>\( p_{1} = \{ (1,2), (2,5) (5,6)\} \)</li>
+                      <li>\( p_{2} = \{ (1,2), (2,4), (4,6) \} \)</li>
+                      <li>\( p_{3} = \{ (1,3), (3,4), (4,6)\} \)</li>
+                    </ol>
+                    <p>
+                      Now note that the smallest capacity along these edges gives us:
+                    </p>
+                    <ol>
+                      <li>\(f_{1} = \min(\{c_{f}(u,v) : (u,v) \in p_{1}\}) = 4 \)</li>
+                      <li>\(f_{2} = \min(\{c_{f}(u,v) : (u,v) \in p_{2}\}) = 6 \)</li>
+                      <li>\(f_{3} = \min(\{c_{f}(u,v) : (u,v) \in p_{3}\}) = 4 \)</li>
+                    </ol>
+                   </p>
+                   <p>
+                    This gives us in the flow for this phase to be:
+                      \[
+                        f_{total} = f_{1} + f_{2} + f_{3} = 14
+                      \]
+                   </p>
+                 </div>
+                 <h2 class="title">DFS Implementation in C++</h2>
+                 <pre>
+                 <code class="language-c++">
+                     int dfs(int start, int cap) {
+
+                        int tmp_targ = cap;
+
+                        if (start == row_size-1) {
+                            return tmp_targ;
+                        }
+
+                        for (unsigned int i=0; i < row_size; i++) {
+
+                            if (
+                                    level[i] == (level.at(start)+1) &&
+                                    flow[start][i] < data.at(start).at(i)
+                                ) {
+
+                                // Grab the smallest capacity that we can find
+                                int local_min = std::min(tmp_targ,
+                                        data.at(start).at(i) - flow.at(start).at(i));
+
+                                int prop_flow = dfs(i, local_min);
+
+                                flow[start][i] = flow[start][i] + prop_flow;
+
+                                tmp_targ = tmp_targ - prop_flow;
+
+                            }
+                        }
+
+                        return cap - tmp_targ;
+                    }
+
+                 </code>
+                 </pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Run Time -->
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                  <h1 class="title">Overview and Run Time Analysis</h1>
+                    <h2 class="subtitle">
+                        Asymptotic analysis
+                  </h2>
+            <div class="content">
+              <h5><b>Overview</b></h5>
+            <ol>
+              <li>
+                Use breadth first search on the graph to mark vertices to be a certain distance from the source (removes blocking flows)
+              </li>
+              <li>
+                Use depth first search to update flows along the path with the smallest capacity.
+              </li>
+              <li>
+                Keep track of the flow you have added at each phase.
+              </li>
+            </ol>
+            Now we want to repeat the first and second step until there is no path that can be found from source to sink.
+          </div>
+
+
+          <div class="content">
+      <h5><b>Analysis</b></h5>
+      <p>
+        <p>
+        Let us consider a single phase of Dinitz's algorithm.
+        </p>
+        First consider we have to build our level graph using BFS. During the building of the level graph it is possible that we have to visit every edge as they meet our capacity requirement and is unvisited. This gives us \(O(|E|)\) so far.
+
+          <p></p>
+        <p>
+        Now consider our DFS to find a blocking flow which is of length \(l\). That gives us \(O(l|E|) = O(|V||E|) \) for a single phase. Now how many times is this phase done?
+
+        <p>
+        <b>Proposition</b>: There is at most \(|V| - 1\) phases of Dinitiz's algorithm.
+      <p>
+      <b>Proof</b>: Notice that the distance between the source and target cannot exceed the number of vertices minues one.
+      </p>
+        </p>
+        </p>
+
+
+      Thus we have in total \(O(|V|^{2}|E|)\).
+
+      </p>
+          </div>
+                  </div>
+        </div>
+    </section>
+
+    <!-- Optimization -->
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                  <h1 class="title">Optimizations</h1>
+                    <h2 class="subtitle">
+                        Time Optimizations
+                    </h2>
+                    <pre>
+                      <code>
+                        Model name:          11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+                        CPU family:          6
+                        Model:               140
+                        Thread(s) per core:  2
+                        Core(s) per socket:  4
+                        Socket(s):           1
+                        Stepping:            1
+                        CPU max MHz:         4200.0000
+                        CPU min MHz:         400.0000
+
+                        ...
+
+                        Caches (sum of all):     
+                          L1d:                   192 KiB (4 instances)
+                          L1i:                   128 KiB (4 instances)
+                          L2:                    5 MiB (4 instances)
+                          L3:                    8 MiB (1 instance)
+
+
+                       ...
+
+                                     total        used        free      shared  buff/cache   available
+                      Mem:            31Gi       3.0Gi        23Gi       1.9Gi       4.8Gi        25Gi
+                      Swap:          8.0Gi          0B       8.0Gi
+                      </code>
+                    </pre>
+
+                    <h2 class="subtitle">
+                        Compressed Sparse Row Matrix
+                    </h2>
+                    <p>
+                    Instead of using adjacency matrices you can use compressed sparse row matrix.
+                    </p>
+                    <p>
+                      Consider:
+                      \[
+                        \begin{pmatrix}
+                          0 & 119 & 116 & 0   & 0   & 0 \\
+                          0 & 0   & 244   & 237 & 0   & 0 \\
+                          0 & 0   & 0     & 108 & 188 & 0 \\
+                          0 & 0   & 0     & 0   & 101 & 182 \\
+                          0 & 0   & 0     & 0   & 0   & 204
+                        \end{pmatrix}
+                      \]
+                    </p>
+
+                    We can reduce this matrix to CSR format:
+                    \[
+                    \text{offsets} = \begin{pmatrix}
+                        1 & 3 & 5 & 7 & 9 & 10 & 0 \\
+                      \end{pmatrix}
+
+                    \]
+
+                    \[
+                    \text{end_vert} = \begin{pmatrix}
+                      2 & 3 & 3 & 4 & 4 & 5 & 5 & 6 & 6
+                      \end{pmatrix}
+                    \]
+
+                    \[
+                    \text{weights} = \begin{pmatrix}
+                      119 & 116 & 244 & 237 & 108 & 188 & 101 & 182 & 204
+                      \end{pmatrix}
+                    \]
+
+                    <p>
+                      Runtime:
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th title="Size (nxn)"> Size (nxn)</th>
+                            <th title="Compressed Sparse Row"> CSR (s)</th>
+                            <th title="Adjacency Matrix"> Adj Matr. (s)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>5</th>
+                            <td>2.22E-05</td>
+                            <td>2.77E-05</td>
+                          </tr>
+                          <tr>
+                            <th>100</th>
+                            <td>0.0003850460052</td>
+                            <td>0.006009817123</td>
+                          </tr>
+                          <tr>
+                            <th>500</th>
+                            <td>0.002076864243</td>
+                            <td>0.5234670639</td>
+                          </tr>
+                          <tr>
+                            <th>1000</th>
+                            <td>0.004136323929</td>
+                            <td>2.249393702</td>
+                          </tr>
+                          <tr>
+                            <th>1500</th>
+                            <td>0.006240844727</td>
+                            <td>10.91037941</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </p>
+
+                    <h2 class="subtitle">
+                        Dynamic Tree (Link/Cut tree)
+                    </h2>
+        <div class="content">
+          <p>
+        A dynamic tree is a data structure that contains multiple trees (forest). In particular, this data structure allows us to do the following:
+            <ol>
+
+              <li>
+                <code>findroot(v)</code> returns the root of the tree containing vertex v.
+              </li>
+
+              <li>
+                <code>findcost(v)</code> returns a pair (w,x). x is the minimum weight on the tree path of v to <code>findroot(v)</code>. w is the last vertex on the path with weight w.
+              </li>
+
+              <li>
+                <code>addcost(v,x)</code> adds x to the cost of every vertex on the path v to <code>findroot(v)</code>.
+              </li>
+
+            </ol>
+            </p>
+          </div>
+            <h2 class="subtitle">
+                Using Dynamic Tree in Dinitz's Algorithm
+            </h2>
+        <p>
+        During depth first search when finding the blocking flow we can speed up Dinitz's algorithm by using a dynamic tree. Normally DFS will have an asymptotic runtime of \(O(|V||E|)\). However, by using a dynamic tree to reuse visited paths on \(G_{f}\) we can have a run time of \(O(|E|\log(|V|))\) for finding a blocking flow instead. This gives us a total runtime of \(O(|V||E|\log(|V|))\).
+
+        Note that we can add to the flow of our graph by using <code>addcost(v,x)</code>. We can also find the portion of the blocking path by using <code>findcost(v)</code>. In other words, we can start DFS until we run into a vertex that is in our dynamic tree, then use the dynamic tree to find the rest of the cost from there.
+
+        </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dinitz's Algorithm -->
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="box">
+                <h1 class="title">Dinitz's Pseudo Code</h1>
+                <h2 class="subtitle">
+                    Cherkassy's version
+                </h2>
+                <div class="card" style="background-color:black;">
+                    <div class "card-content">
+                      <div class="content has-text-white-ter">
+                        <pre >
+                            <code>
+                                Input:
+                                    a flow network G = (V, E, c, s, t)
+                                    a feasible flow f, in G (equal to zero by default)
+
+                                Initialization:
+                                    compute ∀e ∈ E: c_f(e) = c(e) - f(e);
+
+
+                                dowhile
+                                begin
+                                    compute ∀e ∈ V: rank(v) = dist(v,t), by BFS from t on edges with c_f > 0
+                                    in the inverse edge direction;
+
+                                    if ranks(s) = infinity then begin f = c - c_f; return f; end;
+
+                                    while DFS from s do
+                                    begin
+                                    any edge (x,y) s.t. c_f(x,y) = 0 or rank(y) != rank(x)-1 is skipped;
+
+                                    if (x == t) then
+                                        begin 
+                                            /* P denotes current DFS path */
+                                            epsilon = min {c_f(e): e is in P};
+                                            for edges (v,u) of P, from t downto s do
+                                            begin
+                                                c_f(v,u) = c_f(v,u) - epsilon;
+                                                c_f (u,v) = = c_f(u,v) + epsilon
+
+                                                if c_v(u,v) = 0 then x = u;
+                                            end
+                                        end
+                                       end
+                                   end
+                            </code>
+                        </pre>
+                       </div>
+                    </div>
+                   </div>
+                </div>
+            </div>
+     </section>
+
+     <section class="section">
+       <div class="container is-fluid">
+         <div class="box">
+           <p class="title">
+            Ask me anything (AMA)
+           </p>
+           <h2 class="subtitle">FAQ</h2>
+           <div class="content">
+             <ol>
+               <li>
+                 <h5>How long did this take?</h5>
+                 <p> Too long than it should have. </p>
+               </li>
+               <li>
+                 <h5>Do you have free time?</h5>
+                 <p> See above. </p>
+               </li>
+                <li>
+                 <h5>But do you enjoy it all?</h5>
+                 <p> Yes  <span style="">&#128512;</span> </p>
+               </li>
+               <li>
+                 <h5>How do you prove the theoretical bounds on cut/link tree?</h5>
+                 <p> Using amortized analysis, the proof I saw uses the potential method. Very cool stuff.
+               </li>
+             </ol>
+           </div>
+       </div>
+     </section>
+
+
+     <!-- References -->
+     <section class="hero">
+      <div class="hero-body">
+          <div class="container">
+            <p class="title">
+              References
+            </p>
+            <div class="content">
+              <ol>
+                <li > 
+                  <a href="https://en.wikipedia.org/wiki/Dinic%27s_algorithm"><span class="is-link">Wikipedia: Dinic's Algorithm </span></a>
+
+                </li>
+                <li>
+                  <a href="https://www.cs.bgu.ac.il/~dinitz/Papers/Dinitz_alg.pdf"><span class="is-link">Dinitz's Algorithm: The Original Version and Even's Version, Yefinm Dinitz</span></a>
+                </li>
+                <li>
+                  <a href="https://www.arl.wustl.edu/~jon.turner/cse/542/text/sec19.pdf"><span class="is-link">Dinic's Algorithm with Dynamic Trees, Jonathan Turner</span></a>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+     </section>
+
+      </body>
+      <script>
+      {% include graph-control.js %}
+      </script>
+      <!-- <script type="text/javascript" src="graph-control.js"></script> ->
+</html>

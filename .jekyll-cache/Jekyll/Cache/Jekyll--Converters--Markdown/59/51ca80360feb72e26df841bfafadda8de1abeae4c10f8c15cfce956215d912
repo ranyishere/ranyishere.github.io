@@ -1,0 +1,14 @@
+I"�<h1 id="how-memory-and-cpu-are-looked-at">How Memory and CPU are looked at</h1>
+
+<p>When your code is too slow and you checked your code for bottlenecks.</p>
+
+<h3 id="information">Information:</h3>
+
+<p>http://www.marinamele.com/7-tips-to-time-python-scripts-and-control-memory-and-cpu-usage</p>
+
+<p>https://www.amazon.com/High-Performance-Python-Performant-Programming/dp/1449361595/ref=sr_1_1?ie=UTF8&amp;qid=1416157131&amp;sr=8-1&amp;keywords=high+performance+python&amp;pebp=1416157123265</p>
+
+<p>https://docs.python.org/3.5/library/resource.html –&gt; Resource management in python</p>
+
+<p>https://www.tensorflow.org/tfrc/ –&gt; tensorflow computing servers for researchers (free)</p>
+:ET

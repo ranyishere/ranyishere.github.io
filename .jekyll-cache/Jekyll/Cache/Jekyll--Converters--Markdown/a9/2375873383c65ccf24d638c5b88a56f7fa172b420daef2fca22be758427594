@@ -1,0 +1,42 @@
+I"	<h1 id="generative-adversarial-networks">Generative Adversarial Networks</h1>
+
+<p>This is a real interesting talk by Ian Goodfellow. He gives an overview applications of
+a GAN and some underlying theory. He makes a reference to a game theory approach.
+This is because in a GAN model you have two players essentially. A discriminator and
+a generator that have their own policies. A discriminator attempts to find counterfeits
+that are produced by the generator, while the generator attempts to fool the discriminator. Through game theory, we are able to find out because of the strategies
+that each player takes, the generator will always win in the end.</p>
+
+<p>Ian brings up an interesting point that the discriminator should be
+a little stronger than the generator. He states it’s because the discriminator dictates what the generator learns. Furthermore, he mentions that the model has
+issues when it comes to counting things in pictures.</p>
+
+<p>Possible uses of GAN:</p>
+
+<ul>
+  <li>Simulated environments and training data</li>
+  <li>Stimulate missing data
+    <ul>
+      <li>Semi-supervised learning</li>
+    </ul>
+  </li>
+  <li>Multiple correct answers (more on this)</li>
+  <li>Realistic generation tasks</li>
+  <li>Simulation by prediction</li>
+  <li>Solve inference problems</li>
+  <li>Learn useful embeddings</li>
+</ul>
+
+<h2 id="multiple-correct-answers">Multiple correct answers</h2>
+<p>What Ian meant by having multiple correct answers is that your lists of possible
+outcomes allowed from your model is more than one. For example, if you are trying
+to predict cats, dogs, and human. We might not be able to distinguish that a given input is either one, but we are able to say that it is possible that the input is
+one of the things in the list. Therefore, the input is accepted.</p>
+
+<h2 id="learn-useful-embeddings">Learn useful embeddings</h2>
+<p>There are tools like word2vec that are able to turn words into a vector in an embedded space. You are able to do the same thing with GANs but with pictures. For example, given a picture of a man with glasses, subtract a picture of a man, and a picture of a woman with glasses is returned.</p>
+
+<h3 id="link-to-video">Link to video:</h3>
+
+<p>http://on-demand.gputechconf.com/gtc/2017/video/s7502-ian-goodfellow-generative-adversarial-networks.mp4</p>
+:ET
