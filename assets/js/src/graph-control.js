@@ -253,8 +253,8 @@ var graph2 = {
             "type": "0/10"
         },
         {
-            "source": 5,
-            "target": 4,
+            "source": 4,
+            "target": 5,
             "type": "0/6"
         },
         {
@@ -425,8 +425,8 @@ var graph4 = {
             "type": "0/10"
         },
         {
-            "source": 5,
-            "target": 4,
+            "source": 4,
+            "target": 5,
             "type": "0/6"
         },
         {
@@ -511,8 +511,8 @@ var graph5 = {
             "type": "4/10"
         },
         {
-            "source": 5,
-            "target": 4,
+            "source": 4,
+            "target": 5,
             "type": "0/6"
         },
         {
@@ -759,7 +759,9 @@ var original_name = [
      "Transformer:4", "Transformer:5",
 ];
 
-var dfs_data = [0, 4, 6, 7, 3, 2, 1, 5, 8];
+// var dfs_data = [0, 4, 6, 7, 3, 2, 1, 5, 8];
+
+var dfs_data = [0,4,6,3,8,7,2,1,5];
 
 var total_dfs_data = [0,1,2,3,4,5,6,7,8];
 
